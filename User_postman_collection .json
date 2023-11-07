@@ -1,0 +1,1031 @@
+{
+	"info": {
+		"_postman_id": "c96a82ed-1e73-4375-a1ff-892daa8bb0a2",
+		"name": "Post (autotest)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27952543"
+	},
+	"item": [
+		{
+			"name": "GetPostList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check body data is array\", function () {\r",
+							"    pm.expect(jsonData.data).to.be.an (\"array\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].id is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].id).to.be.an (\"string\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].title is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].title).to.be.an (\"undefined\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[19].id is string\", function () {\r",
+							"    pm.expect(jsonData.data[19].id).to.be.an (\"string\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[20]. is undefined\", function () {\r",
+							"    pm.expect(jsonData.data[20]).to.be.an (\"undefined\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check limit is 20\", function () {\r",
+							"    pm.expect(jsonData.limit).to.eql(20);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check page is 0\", function () {\r",
+							"    pm.expect(jsonData.page).to.eql(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body total is number\", function () {\r",
+							"    pm.expect(jsonData.total).to.be.a (\"number\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/post",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/post",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "9374"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"249e-q9hoZbzwalD9v1s/HlGx227FBtM\""
+						},
+						{
+							"key": "Function-Execution-Id",
+							"value": "1w9br7wf25yw"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31556926"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "568e83c95c877c8b809f53ab33b86ad7"
+						},
+						{
+							"key": "X-Country-Code",
+							"value": "US"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 30 Oct 2023 13:18:24 GMT"
+						},
+						{
+							"key": "X-Served-By",
+							"value": "cache-iad-kiad7000044-IAD"
+						},
+						{
+							"key": "X-Cache",
+							"value": "MISS"
+						},
+						{
+							"key": "X-Cache-Hits",
+							"value": "0"
+						},
+						{
+							"key": "X-Timer",
+							"value": "S1698671904.144318,VS0,VE342"
+						},
+						{
+							"key": "Vary",
+							"value": "cookie,need-authorization, x-fh-requested-host, accept-encoding"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\";ma=86400,h3-29=\":443\";ma=86400,h3-27=\":443\";ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"653fa62e9a2c6e79d9e020fb\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:48:46.225Z\",\n            \"updatedDate\": \"2023-10-30T12:48:46.225Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653fa3299a2c6ec534e01b72\",\n            \"image\": \"https://papik.pro/uploads/posts/2021-10/1634741210_1-papik-pro-p-otkritki-spasibki-1.jpg\",\n            \"likes\": 3,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dogs are wonderful pets, many people love them.\",\n            \"publishDate\": \"2023-10-30T12:35:53.582Z\",\n            \"updatedDate\": \"2023-10-30T12:44:49.592Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653fa09b9a2c6eaa8fe01765\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:24:59.600Z\",\n            \"updatedDate\": \"2023-10-30T12:24:59.600Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653fa01d9a2c6eb106e016c1\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:22:53.781Z\",\n            \"updatedDate\": \"2023-10-30T12:22:53.781Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9fea9a2c6e3e64e01678\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:22:02.780Z\",\n            \"updatedDate\": \"2023-10-30T12:22:02.780Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9f219a2c6e28dfe01530\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:18:41.515Z\",\n            \"updatedDate\": \"2023-10-30T12:18:41.515Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9f009a2c6e74d9e014f3\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:18:08.468Z\",\n            \"updatedDate\": \"2023-10-30T12:18:08.468Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9ec39a2c6e8fa2e014a4\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:17:07.082Z\",\n            \"updatedDate\": \"2023-10-30T12:17:07.082Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9eb09a2c6e1ccde0149d\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:16:48.487Z\",\n            \"updatedDate\": \"2023-10-30T12:16:48.487Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9e889a2c6e6520e01473\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:16:08.681Z\",\n            \"updatedDate\": \"2023-10-30T12:16:08.681Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9daf9a2c6e1dd4e01340\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:12:31.286Z\",\n            \"updatedDate\": \"2023-10-30T12:12:31.286Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9d9e9a2c6e92c8e01333\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:12:14.481Z\",\n            \"updatedDate\": \"2023-10-30T12:12:14.481Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9d879a2c6e7bb2e0131f\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:11:51.880Z\",\n            \"updatedDate\": \"2023-10-30T12:11:51.880Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9d4e9a2c6e1a6ee012d7\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:10:54.085Z\",\n            \"updatedDate\": \"2023-10-30T12:10:54.085Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9d3e9a2c6ee9a2e012d1\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:10:38.275Z\",\n            \"updatedDate\": \"2023-10-30T12:10:38.275Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9bdf9a2c6e0f16e011b0\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T12:04:47.583Z\",\n            \"updatedDate\": \"2023-10-30T12:04:47.583Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f9a0f9a2c6ec8a6e0105f\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T11:57:03.437Z\",\n            \"updatedDate\": \"2023-10-30T11:57:03.437Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f99e09a2c6e3dede0101c\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T11:56:16.781Z\",\n            \"updatedDate\": \"2023-10-30T11:56:16.781Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f99b29a2c6e3df8e00fe8\",\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n            \"likes\": 242,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T11:55:30.890Z\",\n            \"updatedDate\": \"2023-10-30T11:55:30.890Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        },\n        {\n            \"id\": \"653f97259a2c6e0456e00dcd\",\n            \"image\": \"https://papik.pro/uploads/posts/2021-10/1634741210_1-papik-pro-p-otkritki-spasibki-1.jpg\",\n            \"likes\": 0,\n            \"tags\": [\n                \"dog\",\n                \"animal\",\n                \"golden retriever\"\n            ],\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n            \"publishDate\": \"2023-10-30T11:44:37.009Z\",\n            \"updatedDate\": \"2023-10-30T11:44:37.009Z\",\n            \"owner\": {\n                \"id\": \"60d0fe4f5311236168a10a29\",\n                \"title\": \"ms\",\n                \"firstName\": \"Vanessa\",\n                \"lastName\": \"Ramos\",\n                \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n            }\n        }\n    ],\n    \"total\": 927,\n    \"page\": 0,\n    \"limit\": 20\n}"
+				}
+			]
+		},
+		{
+			"name": "CreatePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							" var jsonData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.collectionVariables.set(\"PostId\", jsonData.id);\r",
+							"\r",
+							"pm.test(\"Check body likes\", function () {\r",
+							"    pm.expect(jsonData.likes).to.eql(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body image\", function () {\r",
+							"    pm.expect(jsonData.image).to.eql(\"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\");\r",
+							"});    \r",
+							"\r",
+							"pm.test(\"Check body text\", function () {\r",
+							"    pm.expect(jsonData.text).to.eql(\"Dog in a forest at sunset dog in forest with sun r...\");\r",
+							"});  \r",
+							"\r",
+							"pm.test(\"Check body owner.id\", function () {\r",
+							"    pm.expect(jsonData.owner.id).to.eql(\"60d0fe4f5311236168a10a29\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.title\", function () {\r",
+							"    pm.expect(jsonData.owner.title).to.eql(\"ms\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.firstName\", function () {\r",
+							"    pm.expect(jsonData.owner.firstName).to.eql(\"Vanessa\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.lastName\", function () {\r",
+							"    pm.expect(jsonData.owner.lastName).to.eql(\"Ramos\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.picture\", function () {\r",
+							"    pm.expect(jsonData.owner.picture).to.eql(\"https://randomuser.me/api/portraits/med/women/33.jpg\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body tags is array\", function () {\r",
+							"    pm.expect(jsonData.tags).to.be.an (\"array\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags\", function () {\r",
+							"    pm.expect(jsonData.tags).to.include(\"dog\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags\", function () {\r",
+							"    pm.expect(jsonData.tags).to.include(\"animal\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags\", function () {\r",
+							"    pm.expect(jsonData.tags).to.include( \"golden retriever\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body id is string\", function () {\r",
+							"    pm.expect(jsonData.id).to.be.a (\"string\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body publishDate is string\", function () {\r",
+							"    pm.expect(jsonData.publishDate).to.be.a (\"string\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body updatedDate is string\", function () {\r",
+							"    pm.expect(jsonData.updatedDate).to.be.a (\"string\")\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n            \r\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\r\n            \"likes\": 0,\r\n            \"tags\": [\r\n                \"dog\",\r\n                \"animal\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\r\n            \"publishDate\": \"2020-05-22T22:27:12.912Z\",\r\n            \"owner\":\"60d0fe4f5311236168a10a29\"\r\n              \r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/post/create",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n            \r\n            \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\r\n            \"likes\": 0,\r\n            \"tags\": [\r\n                \"dog\",\r\n                \"animal\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\r\n            \"publishDate\": \"2020-05-22T22:27:12.912Z\",\r\n            \"owner\":\"60d0fe4f5311236168a10a29\"\r\n              \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/post/create",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "473"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"1d9-uUFG/gnlQ80xJ8bF9O8QrSGHb0E\""
+						},
+						{
+							"key": "Function-Execution-Id",
+							"value": "1kz8fb1ijrlr"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31556926"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "c961239904a924653bb265e37a72eec2"
+						},
+						{
+							"key": "X-Country-Code",
+							"value": "US"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 30 Oct 2023 12:35:53 GMT"
+						},
+						{
+							"key": "X-Served-By",
+							"value": "cache-iad-kiad7000039-IAD"
+						},
+						{
+							"key": "X-Cache",
+							"value": "MISS"
+						},
+						{
+							"key": "X-Cache-Hits",
+							"value": "0"
+						},
+						{
+							"key": "X-Timer",
+							"value": "S1698669353.486124,VS0,VE140"
+						},
+						{
+							"key": "Vary",
+							"value": "cookie,need-authorization, x-fh-requested-host, accept-encoding"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\";ma=86400,h3-29=\":443\";ma=86400,h3-27=\":443\";ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"653fa3299a2c6ec534e01b72\",\n    \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n    \"likes\": 0,\n    \"link\": \"\",\n    \"tags\": [\n        \"dog\",\n        \"animal\",\n        \"golden retriever\"\n    ],\n    \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n    \"publishDate\": \"2023-10-30T12:35:53.582Z\",\n    \"updatedDate\": \"2023-10-30T12:35:53.582Z\",\n    \"owner\": {\n        \"id\": \"60d0fe4f5311236168a10a29\",\n        \"title\": \"ms\",\n        \"firstName\": \"Vanessa\",\n        \"lastName\": \"Ramos\",\n        \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "GetPostByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							" var jsonData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.collectionVariables.set(\"PostId\", jsonData.id);\r",
+							"\r",
+							"pm.test(\"Check body likes\", function () {\r",
+							"    pm.expect(jsonData.likes).to.eql(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body image\", function () {\r",
+							"    pm.expect(jsonData.image).to.eql(\"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\");\r",
+							"});    \r",
+							"\r",
+							"pm.test(\"Check body text\", function () {\r",
+							"    pm.expect(jsonData.text).to.eql(\"Dog in a forest at sunset dog in forest with sun r...\");\r",
+							"});  \r",
+							"\r",
+							"pm.test(\"Check body owner.id\", function () {\r",
+							"    pm.expect(jsonData.owner.id).to.eql(\"60d0fe4f5311236168a10a29\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.title\", function () {\r",
+							"    pm.expect(jsonData.owner.title).to.eql(\"ms\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.firstName\", function () {\r",
+							"    pm.expect(jsonData.owner.firstName).to.eql(\"Vanessa\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.lastName\", function () {\r",
+							"    pm.expect(jsonData.owner.lastName).to.eql(\"Ramos\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.picture\", function () {\r",
+							"    pm.expect(jsonData.owner.picture).to.eql(\"https://randomuser.me/api/portraits/med/women/33.jpg\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body tags is array\", function () {\r",
+							"    pm.expect(jsonData.tags).to.be.a (\"array\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags\", function () {\r",
+							"    pm.expect(jsonData.tags).to.include(\"dog\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags\", function () {\r",
+							"    pm.expect(jsonData.tags).to.include(\"animal\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags\", function () {\r",
+							"    pm.expect(jsonData.tags).to.include( \"golden retriever\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body id is string\", function () {\r",
+							"    pm.expect(jsonData.id).to.be.a (\"string\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body publishDate is string\", function () {\r",
+							"    pm.expect(jsonData.publishDate).to.be.a (\"string\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body updatedDate is string\", function () {\r",
+							"    pm.expect(jsonData.updatedDate).to.be.a (\"string\")\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/post/{{PostId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"{{PostId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetPostByID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/post/{{PostId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post",
+								"{{PostId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "473"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"1d9-uUFG/gnlQ80xJ8bF9O8QrSGHb0E\""
+						},
+						{
+							"key": "Function-Execution-Id",
+							"value": "1kz8eesh5s0s"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31556926"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "7f2834be489d56812a42475c0e076314"
+						},
+						{
+							"key": "X-Country-Code",
+							"value": "US"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 30 Oct 2023 12:38:28 GMT"
+						},
+						{
+							"key": "X-Served-By",
+							"value": "cache-iad-kiad7000140-IAD"
+						},
+						{
+							"key": "X-Cache",
+							"value": "MISS"
+						},
+						{
+							"key": "X-Cache-Hits",
+							"value": "0"
+						},
+						{
+							"key": "X-Timer",
+							"value": "S1698669508.021076,VS0,VE107"
+						},
+						{
+							"key": "Vary",
+							"value": "cookie,need-authorization, x-fh-requested-host, accept-encoding"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\";ma=86400,h3-29=\":443\";ma=86400,h3-27=\":443\";ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"653fa3299a2c6ec534e01b72\",\n    \"image\": \"https://img.dummyapi.io/photo-1500879747858-bb1845b61beb.jpg\",\n    \"likes\": 0,\n    \"link\": \"\",\n    \"tags\": [\n        \"dog\",\n        \"animal\",\n        \"golden retriever\"\n    ],\n    \"text\": \"Dog in a forest at sunset dog in forest with sun r...\",\n    \"publishDate\": \"2023-10-30T12:35:53.582Z\",\n    \"updatedDate\": \"2023-10-30T12:35:53.582Z\",\n    \"owner\": {\n        \"id\": \"60d0fe4f5311236168a10a29\",\n        \"title\": \"ms\",\n        \"firstName\": \"Vanessa\",\n        \"lastName\": \"Ramos\",\n        \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "UpdatePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							" var jsonData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.collectionVariables.set(\"PostId\", jsonData.id);\r",
+							"\r",
+							"pm.test(\"Check body likes\", function () {\r",
+							"    pm.expect(jsonData.likes).to.eql(3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body image\", function () {\r",
+							"    pm.expect(jsonData.image).to.eql(\"https://papik.pro/uploads/posts/2021-10/1634741210_1-papik-pro-p-otkritki-spasibki-1.jpg\");\r",
+							"});    \r",
+							"\r",
+							"pm.test(\"Check body text\", function () {\r",
+							"    pm.expect(jsonData.text).to.eql(\"Dogs are wonderful pets, many people love them.\");\r",
+							"});  \r",
+							"\r",
+							"pm.test(\"Check body owner.id\", function () {\r",
+							"    pm.expect(jsonData.owner.id).to.eql(\"60d0fe4f5311236168a10a29\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.title\", function () {\r",
+							"    pm.expect(jsonData.owner.title).to.eql(\"ms\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.firstName\", function () {\r",
+							"    pm.expect(jsonData.owner.firstName).to.eql(\"Vanessa\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.lastName\", function () {\r",
+							"    pm.expect(jsonData.owner.lastName).to.eql(\"Ramos\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body owner.picture\", function () {\r",
+							"    pm.expect(jsonData.owner.picture).to.eql(\"https://randomuser.me/api/portraits/med/women/33.jpg\");\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check body tags is array\", function () {\r",
+							"    pm.expect(jsonData.tags).to.be.an (\"array\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags\", function () {\r",
+							"    pm.expect(jsonData.tags).to.include(\"dog\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags\", function () {\r",
+							"    pm.expect(jsonData.tags).to.include(\"animal\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags\", function () {\r",
+							"    pm.expect(jsonData.tags).to.include( \"golden retriever\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body id is string\", function () {\r",
+							"    pm.expect(jsonData.id).to.be.a (\"string\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body publishDate is string\", function () {\r",
+							"    pm.expect(jsonData.publishDate).to.be.a (\"string\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body updatedDate is string\", function () {\r",
+							"    pm.expect(jsonData.updatedDate).to.be.a (\"string\")\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n            \r\n            \"image\": \"https://papik.pro/uploads/posts/2021-10/1634741210_1-papik-pro-p-otkritki-spasibki-1.jpg\",\r\n            \"likes\": 3,\r\n            \"tags\": [\r\n                \"dog\",\r\n                \"animal\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"Dogs are wonderful pets, many people love them.\",\r\n            \"publishDate\": \"2020-05-22T22:27:12.912Z\",\r\n            \"owner\":\"60d0fe4f5311236168a10a29\"\r\n              \r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/post/{{PostId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"{{PostId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "UpdatePost",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n            \r\n            \"image\": \"https://papik.pro/uploads/posts/2021-10/1634741210_1-papik-pro-p-otkritki-spasibki-1.jpg\",\r\n            \"likes\": 3,\r\n            \"tags\": [\r\n                \"dog\",\r\n                \"animal\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"Dogs are wonderful pets, many people love them.\",\r\n            \"publishDate\": \"2020-05-22T22:27:12.912Z\",\r\n            \"owner\":\"60d0fe4f5311236168a10a29\"\r\n              \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/post/{{PostId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post",
+								"{{PostId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "495"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"1ef-gq/E1KCnv+3AhITGH19VIUr/6vU\""
+						},
+						{
+							"key": "Function-Execution-Id",
+							"value": "1kz88bj1wzbe"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31556926"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "547b199a23378227b850c2aa25231a88"
+						},
+						{
+							"key": "X-Country-Code",
+							"value": "US"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 30 Oct 2023 12:44:49 GMT"
+						},
+						{
+							"key": "X-Served-By",
+							"value": "cache-iad-kiad7000082-IAD"
+						},
+						{
+							"key": "X-Cache",
+							"value": "MISS"
+						},
+						{
+							"key": "X-Cache-Hits",
+							"value": "0"
+						},
+						{
+							"key": "X-Timer",
+							"value": "S1698669889.488671,VS0,VE141"
+						},
+						{
+							"key": "Vary",
+							"value": "cookie,need-authorization, x-fh-requested-host, accept-encoding"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\";ma=86400,h3-29=\":443\";ma=86400,h3-27=\":443\";ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"653fa3299a2c6ec534e01b72\",\n    \"image\": \"https://papik.pro/uploads/posts/2021-10/1634741210_1-papik-pro-p-otkritki-spasibki-1.jpg\",\n    \"likes\": 3,\n    \"link\": \"\",\n    \"tags\": [\n        \"dog\",\n        \"animal\",\n        \"golden retriever\"\n    ],\n    \"text\": \"Dogs are wonderful pets, many people love them.\",\n    \"publishDate\": \"2023-10-30T12:35:53.582Z\",\n    \"updatedDate\": \"2023-10-30T12:44:49.592Z\",\n    \"owner\": {\n        \"id\": \"60d0fe4f5311236168a10a29\",\n        \"title\": \"ms\",\n        \"firstName\": \"Vanessa\",\n        \"lastName\": \"Ramos\",\n        \"picture\": \"https://randomuser.me/api/portraits/med/women/33.jpg\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"PostId\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/post/{{PostId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"{{PostId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Post",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/post/{{PostId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post",
+								"{{PostId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"21-sSrVSiGQ8eDTu/GdUFmGbw60++c\""
+						},
+						{
+							"key": "Function-Execution-Id",
+							"value": "1kz89bi2qtf7"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31556926"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "7675139354666f199983b665fb0bf0f1;o=1"
+						},
+						{
+							"key": "X-Country-Code",
+							"value": "US"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 30 Oct 2023 12:33:35 GMT"
+						},
+						{
+							"key": "X-Served-By",
+							"value": "cache-iad-kiad7000111-IAD"
+						},
+						{
+							"key": "X-Cache",
+							"value": "MISS"
+						},
+						{
+							"key": "X-Cache-Hits",
+							"value": "0"
+						},
+						{
+							"key": "X-Timer",
+							"value": "S1698669215.259686,VS0,VE85"
+						},
+						{
+							"key": "Vary",
+							"value": "cookie,need-authorization, x-fh-requested-host, accept-encoding"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\";ma=86400,h3-29=\":443\";ma=86400,h3-27=\":443\";ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"653fa297fba77e2cda58f8a5\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{app-id}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "app-id",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PostId",
+			"value": ""
+		}
+	]
+}
